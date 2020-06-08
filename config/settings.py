@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'aerolinksma.accounts.apps.AccountsConfig',
+    'aerolinksma.shuttle.apps.ShuttleConfig',
 ]
 
 MIDDLEWARE = [
