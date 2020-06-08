@@ -2,7 +2,7 @@ import datetime
 
 from django.contrib import admin
 
-from aerolinksma.shuttle.models import Place
+from aerolinksma.shuttle.models import Place, Client, Reservation
 
 
 @admin.register(Place)
@@ -45,3 +45,15 @@ class PlaceAdmin(admin.ModelAdmin):
         self.message_user(request, '{} disabled'.format(message_bit))
     make_disabled.short_description = 'Disable selected places'
     make_disabled.allowed_permissions = ('change',)
+
+
+@admin.register(Reservation)
+class ReservationAdmin(admin.ModelAdmin):
+    list_display = ('id', 'place', 'direction', 'fare_type',
+                    'paid', 'pickup_date', 'created_at')
+
+
+@admin.register(Client)
+class ClientAdmin(admin.ModelAdmin):
+    list_display = ('id', 'first_name', 'last_name', 'email',
+                    'phone_number')
