@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('aerolinksma.core.urls')),
+    path('shuttle/', include('aerolinksma.shuttle.urls')),
     path('admin/', admin.site.urls),
 ]
