@@ -141,3 +141,9 @@ config/settings/local_*.py
 
 # ignore the cache directory
 cache/
+
+# ignore npm modules
+node_modules/
+
+# ignore webpack generated files
+aerolinksma/static/js/bundle.js

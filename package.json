@@ -1,0 +1,25 @@
+{
+  "name": "aerolinksma",
+  "version": "1.0.0",
+  "description": "Shuttle service for San Miguel de Allende, Mexico",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production webpack",
+    "build-dev": "webpack",
+    "watch": "webpack --watch"
+  },
+  "author": "Angel Gomez",
+  "dependencies": {
+    "autoprefixer": "^9.8.0",
+    "bootstrap": "^4.5.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.5.3",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.26.8",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
