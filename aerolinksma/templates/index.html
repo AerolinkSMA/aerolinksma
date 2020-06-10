@@ -1,9 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>AerolinkSMA</h1>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-12 col-lg-8 col-xl-7">
+                    <h1 class="display-4">
+                        Travel Safe, Travel Smart
+                    </h1>
 
-    <a href="{% url 'shuttle:create_reservation' %}">
-        Make reservation
-    </a>
+                    <p class="lead">
+                        Serving San Miguel de Allende, Guanajuato International
+                        Airport (BJX), Querétaro Intercontinental Airport (QRO),
+                        Mexico City International Airport (MEX), and the
+                        surrounding areas.
+                    </p>
+
+                    <a class="btn btn-lg btn-primary" href="{% url 'shuttle:create_reservation' %}">
+                        Make reservation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

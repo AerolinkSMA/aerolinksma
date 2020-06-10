@@ -8,6 +8,7 @@
         <script src="{% static 'js/bundle.js' %}"></script>
     </head>
     <body>
+        {% include "partials/navbar.html" %}
         {% block content %}{% endblock %}
     </body>
 </html>
