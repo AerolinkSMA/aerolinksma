@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Reservations</h1>
+                <ul class="list-group">
+                    {% for reservation in object_list %}
+                        <a class="list-group-item list-group-item-action" href="#">
+                            <div class="d-flex w-100 justify-content-between align-items-center mb-n2">
+                                <p class="mb-1">
+                                    {{ reservation.pk }} -
+                                    {{ reservation.place }}
+                                    {{ reservation.get_direction_display }}
+                                </p>
+                                <small title="{{ reservation.created_at }}">
+                                    {{ reservation.created_at|timesince }}
+                                    ago
+                                </small>
+                            </div>
+
+                            <small>
+                                Pickup date:
+                                {{ reservation.pickup_date }}
+                            </small>
+                        </a>
+                    {% endfor %}
+                </ul>
+
+                {% include "partials/pagination.html" %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

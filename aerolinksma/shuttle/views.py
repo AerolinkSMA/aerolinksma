@@ -31,3 +31,9 @@ class CreateReservationView(generic.View):
             reservation.save()
 
             return HttpResponseRedirect(reverse('index'))
+
+
+class AdminView(generic.ListView):
+    model = Reservation
+    paginate_by = 20
+    template_name = 'shuttle/admin.html'

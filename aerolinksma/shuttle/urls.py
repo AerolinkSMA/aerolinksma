@@ -7,4 +7,5 @@ urlpatterns = [
     path('',
          views.CreateReservationView.as_view(),
          name='create_reservation'),
+    path('admin/', views.AdminView.as_view(), name='admin'),
 ]
