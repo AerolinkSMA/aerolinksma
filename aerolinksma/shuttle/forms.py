@@ -11,5 +11,5 @@ class ClientForm(forms.ModelForm):
 class ReservationForm(forms.ModelForm):
     class Meta:
         model = Reservation
-        fields = ('fare_type', 'direction', 'place', 'place_address',
+        fields = ('fare_type', 'direction', 'place', 'place_details',
                   'sma_address', 'luggage', 'pickup_date', 'return_date')

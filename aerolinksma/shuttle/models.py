@@ -32,7 +32,7 @@ class Reservation(models.Model):
     direction = models.CharField(max_length=2, choices=DIRECTION_CHOICES)
     place = models.ForeignKey(Place, on_delete=models.SET_NULL,
                               null=True, related_name='reservations')
-    place_address = models.CharField(max_length=255)
+    place_details = models.CharField(max_length=255)
     sma_address = models.CharField(max_length=255)
     fare_type = models.CharField(max_length=2, choices=FARE_TYPES)
     client = models.OneToOneField(Client, on_delete=models.CASCADE)
