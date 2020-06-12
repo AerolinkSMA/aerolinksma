@@ -16,11 +16,18 @@
                                     {{ reservation.place }}
                                     {{ reservation.get_direction_display }}
                                 </h6>
-                                <small title="{{ reservation.created_at }}">
+                                <small title="{{ reservation.created_at }}"
+                                       class="d-none d-md-block">
                                     {{ reservation.created_at|timesince }}
                                     ago
                                 </small>
                             </div>
+
+                            <small class="d-block d-md-none mt-n1 mb-1"
+                                   title="{{ reservation.created_at }}">
+                                {{ reservation.created_at|timesince }}
+                                ago
+                            </small>
 
                             <p class="mb-0">
                                 Pickup date:
