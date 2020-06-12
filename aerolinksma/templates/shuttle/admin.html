@@ -7,7 +7,8 @@
                 <h1>Reservations</h1>
                 <ul class="list-group">
                     {% for reservation in object_list %}
-                        <a class="list-group-item list-group-item-action" href="#">
+                        <a class="list-group-item list-group-item-action"
+                           href="{{ reservation.get_absolute_url }}">
                             <div class="d-flex w-100 justify-content-between align-items-center mb-1">
                                 <h6 class="mb-1">
                                     <span class="badge badge-light badge-pill">

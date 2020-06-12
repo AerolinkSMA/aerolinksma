@@ -37,3 +37,7 @@ class AdminView(generic.ListView):
     model = Reservation
     paginate_by = 20
     template_name = 'shuttle/admin.html'
+
+
+class ReservationDetailView(generic.DetailView):
+    model = Reservation

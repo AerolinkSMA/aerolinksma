@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Place(models.Model):
@@ -57,3 +58,6 @@ class Reservation(models.Model):
             direction = 'From'
         return '{} {} ({})'.format(direction, self.place,
                                    self.get_fare_type_display())
+
+    def get_absolute_url(self):
+        return reverse('shuttle:reservation-detail', kwargs={'pk': self.pk})
