@@ -16,6 +16,15 @@
                                     </span>
                                     {{ reservation.place }}
                                     {{ reservation.get_direction_display }}
+                                    {% if reservation.paid %}
+                                        <span class="badge badge-success">
+                                            Paid
+                                        </span>
+                                    {% else %}
+                                        <span class="badge badge-light">
+                                            Not paid
+                                        </span>
+                                    {% endif %}
                                 </h6>
                                 <small title="{{ reservation.created_at }}"
                                        class="d-none d-md-block">
