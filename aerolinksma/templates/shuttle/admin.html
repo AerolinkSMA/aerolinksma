@@ -8,22 +8,26 @@
                 <ul class="list-group">
                     {% for reservation in object_list %}
                         <a class="list-group-item list-group-item-action" href="#">
-                            <div class="d-flex w-100 justify-content-between align-items-center mb-n2">
-                                <p class="mb-1">
-                                    {{ reservation.pk }} -
+                            <div class="d-flex w-100 justify-content-between align-items-center mb-1">
+                                <h6 class="mb-1">
+                                    <span class="badge badge-light badge-pill">
+                                        {{ reservation.pk }}
+                                    </span>
                                     {{ reservation.place }}
                                     {{ reservation.get_direction_display }}
-                                </p>
+                                </h6>
                                 <small title="{{ reservation.created_at }}">
                                     {{ reservation.created_at|timesince }}
                                     ago
                                 </small>
                             </div>
 
-                            <small>
+                            <p class="mb-0">
                                 Pickup date:
-                                {{ reservation.pickup_date }}
-                            </small>
+                                <span class="badge badge-primary badge-pill">
+                                    {{ reservation.pickup_date }}
+                                </span>
+                            </p>
                         </a>
                     {% endfor %}
                 </ul>
