@@ -1,12 +1,21 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
 {% block content %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        <table>
-            {{ reservation_form }}
-            {{ client_form }}
-        </table>
-        <button>Submit</button>
-    </form>
+    <div class="container my-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1>Make your reservation</h1>
+
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {% crispy reservation_form %}
+                    {% crispy client_form %}
+                    <button class="btn btn-primary">
+                        Book now
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}
