@@ -13,6 +13,7 @@ class ClientForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = False
+        self.helper.disable_csrf = True
         self.helper.layout = Layout(
             Div(
                 Field('first_name', wrapper_class='col-md-6'),
@@ -58,6 +59,7 @@ class ReservationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = False
+        self.helper.disable_csrf = True
         self.helper.layout = Layout(
             Div(
                 Field('direction', wrapper_class='col-md-4',
