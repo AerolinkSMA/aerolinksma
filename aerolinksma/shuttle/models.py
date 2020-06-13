@@ -34,7 +34,7 @@ class Reservation(models.Model):
     place = models.ForeignKey(Place, on_delete=models.SET_NULL,
                               null=True, related_name='reservations')
     place_details = models.CharField(max_length=255)
-    sma_address = models.CharField(max_length=255)
+    sma_address = models.CharField('SMA Address', max_length=255)
     fare_type = models.CharField(max_length=2, choices=FARE_TYPES)
     client = models.OneToOneField(Client, on_delete=models.CASCADE)
     luggage = models.IntegerField(default=0)
