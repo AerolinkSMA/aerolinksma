@@ -31,6 +31,13 @@ class CreateReservationView(generic.View):
             reservation.save()
 
             return HttpResponseRedirect(reverse('index'))
+        else:
+            context = {
+                'client_form': client_form,
+                'reservation_form': reservation_form,
+            }
+
+            return render(request, self.template_name, context)
 
 
 class AdminView(generic.ListView):
