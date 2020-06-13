@@ -53,6 +53,16 @@ class ReservationForm(forms.ModelForm):
                     'placeholder': 'Specify the address in San Miguel de Allende',
                 },
             ),
+            'pickup_date': forms.DateTimeInput(
+                attrs={
+                    'placeholder': 'yyyy/mm/dd hh:mm',
+                },
+            ),
+            'return_date': forms.DateTimeInput(
+                attrs={
+                    'placeholder': 'yyyy/mm/dd hh:mm',
+                },
+            ),
         }
 
     def __init__(self, *args, **kwargs):

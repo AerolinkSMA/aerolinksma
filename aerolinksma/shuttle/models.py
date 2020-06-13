@@ -39,7 +39,10 @@ class Reservation(models.Model):
     client = models.OneToOneField(Client, on_delete=models.CASCADE)
     luggage = models.IntegerField(default=0)
     pickup_date = models.DateTimeField()
-    return_date = models.DateTimeField(null=True, blank=True)
+    return_date = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text='Required if fare type is round trip')
     paid = models.BooleanField(default=False)
     notes = models.TextField(help_text='Extra information about your trip',
                              null=True, blank=True)
