@@ -1,0 +1,19 @@
+.jumbotron.landing {
+    @include media-breakpoint-only(xs) {
+        text-align: center;
+    }
+
+    h1 {
+        letter-spacing: -0.03em;
+        font-weight: 900;
+
+    }
+
+    p.lead {
+        font-weight: 400;
+    }
+
+    .btn {
+        font-weight: 600;
+    }
+}

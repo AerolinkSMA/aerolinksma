@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid landing">
         <div class="container my-5">
             <div class="row">
                 <div class="col-md-12 col-lg-8 col-xl-7">
@@ -19,6 +19,10 @@
                     <a class="btn btn-lg btn-primary" href="{% url 'shuttle:create_reservation' %}">
                         Make reservation
                     </a>
+
+                    <p class="text-muted mt-1">
+                        No sign up required.
+                    </p>
                 </div>
             </div>
         </div>
