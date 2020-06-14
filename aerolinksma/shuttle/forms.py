@@ -1,4 +1,5 @@
 from django import forms
+from django.utils import timezone
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Field
 
@@ -55,12 +56,12 @@ class ReservationForm(forms.ModelForm):
             ),
             'pickup_date': forms.DateTimeInput(
                 attrs={
-                    'placeholder': 'yyyy/mm/dd hh:mm',
+                    'placeholder': 'yyyy-mm-dd hh:mm',
                 },
             ),
             'return_date': forms.DateTimeInput(
                 attrs={
-                    'placeholder': 'yyyy/mm/dd hh:mm',
+                    'placeholder': 'yyyy-mm-dd hh:mm',
                 },
             ),
         }
@@ -93,14 +94,40 @@ class ReservationForm(forms.ModelForm):
             ),
         )
 
+    def clean_pickup_date(self):
+        """Fail if pickup date is earlier than current datetime."""
+        now = timezone.now()
+        pickup_date = self.cleaned_data['pickup_date']
+
+        if pickup_date < now:
+            raise forms.ValidationError(
+                'Pickup date cannot be earlier than current time.'
+            )
+
+        return pickup_date
+
     def clean_return_date(self):
-        """Fail if fare type is 'Round trip' and return date is empty."""
+        """
+        Fail if fare type is 'Round trip' and return date is empty.
+
+        Also, fail if return date is earlier than pickup date.
+        """
         return_date = self.cleaned_data['return_date']
         fare_type = self.cleaned_data['fare_type']
 
-        if fare_type == 'RT' and return_date is None:
-            raise forms.ValidationError(
-                'Return date is required for round trips'
-            )
+        if fare_type == 'RT':
+            if return_date is None:
+                raise forms.ValidationError(
+                    'Return date is required for round trips'
+                )
+            else:
+                pickup_date = self.cleaned_data['pickup_date']
+
+                if return_date < pickup_date:
+                    raise forms.ValidationError(
+                        'Return date cannot be earlier pickup date'
+                    )
+        else:
+            return_date = None
 
         return return_date
