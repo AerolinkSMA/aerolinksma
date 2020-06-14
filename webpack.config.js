@@ -33,6 +33,13 @@ module.exports = {
           'sass-loader', // compiles Sass to CSS
         ],
       },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
+      },
     ],
   },
 };
