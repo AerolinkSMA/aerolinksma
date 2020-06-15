@@ -28,7 +28,7 @@ class Reservation(models.Model):
     )
     FARE_TYPES = (
         ('OW', 'One way'),
-        ('RT', 'Rount trip'),
+        ('RT', 'Round trip'),
     )
     direction = models.CharField(max_length=2, choices=DIRECTION_CHOICES)
     place = models.ForeignKey(Place, on_delete=models.SET_NULL,
