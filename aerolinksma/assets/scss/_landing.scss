@@ -1,4 +1,6 @@
 .jumbotron.landing {
+    margin-bottom: 0;
+
     @include media-breakpoint-only(xs) {
         text-align: center;
     }
@@ -14,5 +16,22 @@
 
     .btn {
         font-weight: 600;
+    }
+}
+
+.sub-hero {
+    background-color: $primary;
+    color: white;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    h3 {
+        text-align: center;
+        font-weight: 600;
+        margin: 0;
+
+        span.brand {
+            font-weight: 900;
+        }
     }
 }
