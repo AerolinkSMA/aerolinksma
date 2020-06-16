@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.views import generic
 from django.shortcuts import render
 
-from aerolinksma.shuttle.models import Reservation
+from aerolinksma.shuttle.models import Reservation, Place
 from aerolinksma.shuttle.forms import ClientForm, ReservationForm
 
 
@@ -13,9 +13,11 @@ class CreateReservationView(generic.View):
     reservation_form = ReservationForm()
 
     def get(self, request, *args, **kwars):
+        places = Place.objects.all()
         context = {
             'client_form': self.client_form,
             'reservation_form': self.reservation_form,
+            'places': places,
         }
 
         return render(request, self.template_name, context)

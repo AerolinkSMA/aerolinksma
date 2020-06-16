@@ -8,6 +8,7 @@
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/tables";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/transitions";
@@ -27,6 +28,12 @@
 @import "landing";
 @import "nav";
 @import "forms";
+@import "cards";
+@import "tables";
+
+p.lead {
+    font-weight: 400;
+}
 
 .list-detail {
     h5 {

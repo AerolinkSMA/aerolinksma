@@ -3,13 +3,43 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="container my-3 my-md-5">
-        <div class="row justify-content-center">
-            <div class="col-md-7">
-                <div class="card">
+        <div class="row mb-3">
+            <div class="col">
+                <div class="card p-4">
                     <div class="card-body">
-                        <h1 class="card-title mt-0 mb-3">
+                        <h1>Plan Your Trip</h1>
+
+                        <p class="lead">
+                            Traveling within a group? On your own? We
+                            offer safe and reliable airport and
+                            city-to-city transfers, as well as rides
+                            to touristic points of interest. We’ve got
+                            options to fit your budget and travel
+                            plans.
+                        </p>
+
+                        <p class="lead">
+                            Having no airport of its own, we
+                            understand that finding a way to get to
+                            San Miguel de Allende from one of the
+                            city's neighboring airports can be
+                            hectic. With AerolinkSMA's non-stop
+                            service, you’ll have the comfort and peace
+                            of mind of a guaranteed, safe and reliable
+                            ride.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-7">
+                <div class="card reservation-form shadow-sm">
+                    <div class="card-body">
+                        <h3 class="card-title mt-0 mb-3">
                             Make your reservation
-                        </h1>
+                        </h3>
 
                         <form action="" method="POST">
                             {% csrf_token %}
@@ -19,6 +49,29 @@
                                 Book now
                             </button>
                         </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col d-none d-md-block">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Pricing table</h3>
+
+                        <table class="pricing table table-sm table-borderless table-hover">
+                            <tbody>
+                                {% for place in places %}
+                                    <tr>
+                                        <th scope="row">{{ place.name }}</th>
+                                        <td>${{ place.price }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <a href="#">
+                            See full pricing table
+                        </a>
                     </div>
                 </div>
             </div>
