@@ -35,7 +35,7 @@ class ReservationForm(forms.ModelForm):
                                   help_text='Going to or from SMA?')
     fare_type = forms.ChoiceField(choices=Reservation.FARE_TYPES,
                                   initial=Reservation.FARE_TYPES[0])
-    place = forms.ModelChoiceField(queryset=Place.objects.all(),
+    place = forms.ModelChoiceField(queryset=Place.objects.all().filter(enabled=True),
                                    empty_label='Choose a place')
     luggage = forms.IntegerField(min_value=0, initial=0)
 

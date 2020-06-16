@@ -13,7 +13,7 @@ class CreateReservationView(generic.View):
     reservation_form = ReservationForm()
 
     def get(self, request, *args, **kwars):
-        places = Place.objects.all()
+        places = Place.objects.all().filter(enabled=True)
         context = {
             'client_form': self.client_form,
             'reservation_form': self.reservation_form,
