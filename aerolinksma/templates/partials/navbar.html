@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-light">
+<nav class="main navbar navbar-expand-md navbar-light bg-white fixed-top">
     <a class="navbar-brand" href="{% url 'index' %}">
         AerolinkSMA
     </a>
@@ -14,19 +14,28 @@
                     Home
                 </a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     Pricing
                 </a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     FAQs
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'shuttle:create_reservation' %}">
-                    Make reservation
+
+            <li class="nav-item d-flex align-items-center">
+                <a class="btn btn-sm btn-primary ml-2 d-none d-md-block"
+                   href="{% url 'shuttle:create_reservation' %}">
+                    Make Reservation
+                </a>
+
+                <a class="nav-link d-block d-md-none"
+                   href="{% url 'shuttle:create_reservation' %}">
+                    Make Reservation
                 </a>
             </li>
         </ul>

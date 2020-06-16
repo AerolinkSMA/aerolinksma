@@ -1,3 +1,11 @@
+body {
+    padding-top: $navbar-height;
+}
+
+.main.navbar {
+    box-shadow: 0 0 0 0.1rem rgba($gray-600, 0.25);
+}
+
 .navbar-light .navbar-brand {
     color: theme-color("primary");
     font-weight: 900;
@@ -10,7 +18,6 @@
 }
 
 a.nav-link {
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    font-weight: 400;
+    font-size: 0.875rem;
+    font-weight: 600;
 }

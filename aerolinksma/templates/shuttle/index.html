@@ -2,19 +2,25 @@
 
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="container my-4">
+    <div class="container my-3 my-md-5">
         <div class="row justify-content-center">
             <div class="col-md-7">
-                <h1 class="mb-3">Make your reservation</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title mt-0 mb-3">
+                            Make your reservation
+                        </h1>
 
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    {% crispy reservation_form %}
-                    {% crispy client_form %}
-                    <button class="btn btn-primary">
-                        Book now
-                    </button>
-                </form>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {% crispy reservation_form %}
+                            {% crispy client_form %}
+                            <button class="btn btn-primary">
+                                Book now
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
