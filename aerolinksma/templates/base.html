@@ -9,6 +9,11 @@
     </head>
     <body>
         {% include "partials/navbar.html" %}
-        {% block content %}{% endblock %}
+
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+
+        {% include "partials/footer.html" %}
     </body>
 </html>

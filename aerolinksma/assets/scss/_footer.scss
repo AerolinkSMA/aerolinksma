@@ -1,0 +1,22 @@
+footer {
+    border-top: 1px solid lighten($primary, 25%);
+    background: white;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-weight: 400;
+    color: $body-color;
+
+    a {
+        color: $body-color;
+
+        &:hover,
+        &:visited,
+        &:active {
+            color: lighten($body-color, 5%);
+        }
+    }
+
+    p.brand {
+        margin-bottom: 0;
+    }
+}

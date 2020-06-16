@@ -33,6 +33,8 @@ $theme-colors: map-remove($theme-colors, "secondary", "warning", "info", "dark")
 @import "forms";
 @import "cards";
 @import "tables";
+@import "footer";
+@import "body";
 
 p.lead {
     font-weight: 400;
