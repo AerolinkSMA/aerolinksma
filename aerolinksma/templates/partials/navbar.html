@@ -1,5 +1,8 @@
+{% load static %}
 <nav class="main navbar navbar-expand-md navbar-light bg-white fixed-top">
     <a class="navbar-brand" href="{% url 'index' %}">
+        <img alt="Logo" src="{% static 'logo.svg' %}" width="36" height="36"
+             class="mr-1 d-inline-block align-top" />
         AerolinkSMA
     </a>
 
