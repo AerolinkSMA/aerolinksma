@@ -35,6 +35,7 @@ $theme-colors: map-remove($theme-colors, "secondary", "warning", "info", "dark")
 @import "tables";
 @import "footer";
 @import "body";
+@import "shuttle_page";
 
 p.lead {
     font-weight: 400;
