@@ -2,6 +2,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.shortcuts import render
+from django.utils import timezone
 
 from aerolinksma.shuttle.models import Reservation, Place
 from aerolinksma.shuttle.forms import ClientForm, ReservationForm
@@ -46,6 +47,13 @@ class AdminView(generic.ListView):
     model = Reservation
     paginate_by = 20
     template_name = 'shuttle/admin.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['next_reservations'] = Reservation.objects.all().filter(
+            pickup_date__gte=timezone.now()
+        ).order_by('pickup_date')[:5]
+        return context
 
 
 class ReservationDetailView(generic.DetailView):

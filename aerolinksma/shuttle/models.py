@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 
 class Place(models.Model):
@@ -64,3 +65,10 @@ class Reservation(models.Model):
 
     def get_absolute_url(self):
         return reverse('shuttle:reservation-detail', kwargs={'pk': self.pk})
+
+    @property
+    def has_passed(self):
+        return bool(self.pickup_date < timezone.now())
+
+    def get_id(self):
+        return '#{}'.format(self.id)
