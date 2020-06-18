@@ -3,7 +3,8 @@ body {
 }
 
 .main.navbar {
-    box-shadow: 0 0 0 0.1rem rgba($gray-600, 0.25);
+    border-bottom: 1px solid $gray-400;
+    box-shadow: 0 0 3px 1px rgba($gray-500, 0.25);
 }
 
 .navbar-light .navbar-brand {
