@@ -1,2 +1,2 @@
 import "../scss/main.scss";
-import "./reservation_form";
+import "jquery-datetimepicker/build/jquery.datetimepicker.min.css";

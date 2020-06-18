@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags static %}
 {% block content %}
     <section class="shuttle jumbotron jumbotron-fluid bg-white mb-0">
         <div class="container mb-3">
@@ -83,4 +83,9 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'dist/js/reservation_form.bundle.js' %}"></script>
 {% endblock %}

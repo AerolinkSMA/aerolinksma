@@ -5,10 +5,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  entry: './aerolinksma/assets/js/main.js',
   mode: devMode ? 'development' : 'production',
+  entry: {
+    main: './aerolinksma/assets/js/main.js',
+    reservation_form: './aerolinksma/assets/js/reservation_form.js',
+  },
   output: {
-    filename: 'js/bundle.js',
+    filename: 'js/[name].bundle.js',
     path: path.resolve(__dirname, 'aerolinksma', 'static', 'dist'),
   },
   plugins: [
