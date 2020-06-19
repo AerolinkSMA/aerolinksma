@@ -36,18 +36,9 @@ $theme-colors: map-remove($theme-colors, "secondary", "warning", "info", "dark")
 @import "footer";
 @import "body";
 @import "shuttle_page";
+@import "admin";
 
 p.lead {
     font-weight: 400;
 }
 
-.list-detail {
-    h5 {
-        text-align: center;
-    }
-
-    p {
-        text-align: center;
-        margin-bottom: 0;
-    }
-}

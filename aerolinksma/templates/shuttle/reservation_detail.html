@@ -20,9 +20,14 @@
                     ago
                 </small>
 
-                <div class="my-3">
+                <div class="list-detail-block">
                     <ul class="list-group list-group-horizontal-md">
-                        <li class="list-group-item list-detail border-dark">
+                        <li class="list-group-item list-detail-item">
+                            <h5>{{ object.get_fare_type_display }}</h5>
+                            <p>Fare type</p>
+                        </li>
+
+                        <li class="list-group-item list-detail-item">
                             <h5 title="{{ object.pickup_date|date:'r' }}">
                                 {{ object.pickup_date|date:'D, d M h:i a' }}
                             </h5>
@@ -30,61 +35,94 @@
                         </li>
 
                         {% if object.return_date %}
-                            <li class="list-group-item list-detail">
+                            <li class="list-group-item list-detail-item">
                                 <h5 title="{{ object.return_date|date:'r' }}">
                                     {{ object.return_date|date:'D, d M h:i a' }}
                                 </h5>
                                 <p>Return date</p>
                             </li>
                         {% endif %}
+                    </ul>
+                </div>
 
-                        <li class="list-group-item list-detail">
+                <div class="list-detail-block">
+                    <ul class="list-group list-group-horizontal-md">
+                        <li class="list-group-item list-detail-item">
+                            <h5>{{ object.passengers }}</h5>
+                            <p>Passengers</p>
+                        </li>
+
+                        <li class="list-group-item list-detail-item">
                             <h5>{{ object.luggage }}</h5>
                             <p>Luggage</p>
                         </li>
 
-                        <li class="list-group-item list-detail">
-                            <h5>{{ object.get_fare_type_display }}</h5>
-                            <p>Fare type</p>
-                        </li>
-
-                        <li class="list-group-item list-detail">
-                            <h5>{{ object.get_direction_display }}</h5>
-                            <p>Direction</p>
-                        </li>
-
-                        <li class="list-group-item list-detail{% if object.paid %} border border-success{% endif %}">
-                            <h5>{{ object.paid|yesno:'Yes,No' }}</h5>
+                        <li class="list-group-item list-detail-item{% if object.paid %} border-success{% endif %}">
+                            <h5{% if object.paid %} class="text-success"{% endif %}>
+                                {{ object.paid|yesno:"Yes,No" }}
+                            </h5>
                             <p>Paid</p>
                         </li>
                     </ul>
                 </div>
 
-                <div class="mb-3">
-                    <h4>Client:</h4>
-
-                    <ul class="list-group list-group-flush">
+                <div class="my-3">
+                    <ul class="list-group">
                         <li class="list-group-item">
-                            <h5>{{ object.client.first_name }}</h5>
-                            <p class="mb-0">First Name</p>
+                            <h5>{{ object.place_details }}</h5>
+                            <p class="mb-0">Place details</p>
                         </li>
 
+                        <li class="list-group-item">
+                            <h5>{{ object.sma_address }}</h5>
+                            <p class="mb-0">Address in SMA</p>
+                        </li>
+
+                        {% if object.notes %}
+                            <li class="list-group-item">
+                                {{ object.notes|linebreaks }}
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+                {% if not object.paid %}
+                    <a class="btn btn-primary" href="#">
+                        Mark as paid in cash
+                    </a>
+                {% endif %}
+
+                <a class="btn btn-danger float-right" href="#">
+                    Delete reservation
+                </a>
+            </div>
+
+            <div class="col-md-4 my-3 my-md-0">
+                <h4>Client:</h4>
+
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h5>{{ object.client.first_name }}</h5>
+                        <p class="mb-0">First Name</p>
+                    </li>
+
+                    {% if object.client.last_name %}
                         <li class="list-group-item">
                             <h5>{{ object.client.last_name }}</h5>
                             <p class="mb-0">Last Name</p>
                         </li>
+                    {% endif %}
 
-                        <li class="list-group-item">
-                            <h5>{{ object.client.email }}</h5>
-                            <p class="mb-0">Email</p>
-                        </li>
+                    <li class="list-group-item">
+                        <h5>{{ object.client.email }}</h5>
+                        <p class="mb-0">Email</p>
+                    </li>
 
-                        <li class="list-group-item">
-                            <h5>{{ object.client.phone_number }}</h5>
-                            <p class="mb-0">Phone Number</p>
-                        </li>
-                    </ul>
-                </div>
+                    <li class="list-group-item">
+                        <h5>{{ object.client.phone_number }}</h5>
+                        <p class="mb-0">Phone Number</p>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
