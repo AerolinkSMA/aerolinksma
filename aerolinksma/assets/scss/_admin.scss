@@ -10,6 +10,10 @@
 
     .list-detail-item {
         flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
         h5 {
             text-align: center;
