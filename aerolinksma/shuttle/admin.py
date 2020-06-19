@@ -7,22 +7,16 @@ from aerolinksma.shuttle.models import Place, Client, Reservation
 
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'display_time', 'display_price', 'enabled')
+    list_display = ('id', 'name', 'get_display_time', 'display_price', 'enabled')
     list_filter = ('enabled',)
     actions = ('make_enabled', 'make_disabled')
 
-    def display_time(self, obj):
+    def get_display_time(self, obj):
         """Display time readibly."""
         return '{} ({})'.format(datetime.timedelta(hours=obj.time),
                                 obj.time)
-    display_time.short_description = 'Time (h:m:s)'
-    display_time.admin_order_field = 'time'
-
-    def display_price(self, obj):
-        """Display place's price with a leading dollar sign."""
-        return '${}'.format(obj.price)
-    display_price.short_description = 'Price'
-    display_price.admin_order_field = 'price'
+    get_display_time.short_description = 'Time (h:m:s)'
+    get_display_time.admin_order_field = 'time'
 
     def make_enabled(self, request, queryset):
         rows_updated = queryset.update(enabled=True)

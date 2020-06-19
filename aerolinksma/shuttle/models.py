@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -13,6 +15,17 @@ class Place(models.Model):
 
     def __str__(self):
         return self.name
+
+    def display_price(self):
+        """Display price with leading dollar sign."""
+        return '${}'.format(self.price)
+    display_price.short_description = 'Price'
+    display_price.admin_order_field = 'price'
+
+    def display_time(self):
+        """Display time readibly in format HH:MM."""
+        time = datetime.timedelta(hours=self.time)
+        return ':'.join(str(time).split(':')[:2])
 
 
 class Client(models.Model):

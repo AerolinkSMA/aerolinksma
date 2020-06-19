@@ -49,10 +49,10 @@ class CreateReservationView(generic.View):
             return render(request, self.template_name, context)
 
 
-class AdminView(generic.ListView):
+class AdminReservationView(generic.ListView):
     model = Reservation
     paginate_by = 15
-    template_name = 'shuttle/admin.html'
+    template_name = 'shuttle/admin_reservations.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -86,3 +86,8 @@ class ReservationMarkAsPaidView(generic.View):
         reservation.save()
 
         return HttpResponseRedirect(reservation.get_absolute_url())
+
+
+class AdminPlaceView(generic.ListView):
+    model = Place
+    template_name = 'shuttle/admin_places.html'
