@@ -92,7 +92,8 @@
                     </a>
                 {% endif %}
 
-                <a class="btn btn-danger float-right d-print-none" href="#">
+                <a class="btn btn-danger float-right d-print-none"
+                   href="{% url 'shuttle:reservation-delete' object.pk %}">
                     Delete reservation
                 </a>
             </div>

@@ -1,4 +1,4 @@
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.shortcuts import render
@@ -58,3 +58,8 @@ class AdminView(generic.ListView):
 
 class ReservationDetailView(generic.DetailView):
     model = Reservation
+
+
+class ReservationDeleteView(generic.DeleteView):
+    model = Reservation
+    success_url = reverse_lazy('shuttle:admin')

@@ -11,4 +11,7 @@ urlpatterns = [
     path('admin/reservation/<int:pk>',
          views.ReservationDetailView.as_view(),
          name='reservation-detail'),
+    path('admin/reservation/<int:pk>/delete/',
+         views.ReservationDeleteView.as_view(),
+         name='reservation-delete'),
 ]
