@@ -39,6 +39,7 @@ class Reservation(models.Model):
     fare_type = models.CharField(max_length=2, choices=FARE_TYPES)
     client = models.OneToOneField(Client, on_delete=models.CASCADE)
     luggage = models.IntegerField(default=0)
+    passengers = models.IntegerField(default=1)
     pickup_date = models.DateTimeField()
     return_date = models.DateTimeField(
         null=True,
