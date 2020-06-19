@@ -12,17 +12,20 @@ $("#id_return_date").datetimepicker({
 
 var placesPrices = JSON.parse(document.getElementById("places-prices").textContent);
 var totalCostCard = $("#total-cost");
-var costCashSpan = $("#cost-cash");
-var costPaypalSpan = $("#cost-paypal");
+var totalCostSmall = $("#total-cost-sm"); // Total cost shown in xs-sm devices.
+var costCashSpan = $(".cost-cash");
+var costPaypalSpan = $(".cost-paypal");
 var placeSelect = $("#id_place");
 var fareTypeSelect = $("#id_fare_type");
 
 function hideCostCard() {
   $(totalCostCard).addClass('d-none');
+  $(totalCostSmall).addClass('d-none');
 }
 
 function showCostCard() {
   $(totalCostCard).removeClass('d-none');
+  $(totalCostSmall).removeClass('d-none');
 }
 
 function calculate() {
