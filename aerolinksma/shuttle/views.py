@@ -1,7 +1,7 @@
 from django.urls import reverse, reverse_lazy
 from django.http import HttpResponseRedirect
 from django.views import generic
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 
 from aerolinksma.shuttle.models import Reservation, Place
@@ -63,3 +63,20 @@ class ReservationDetailView(generic.DetailView):
 class ReservationDeleteView(generic.DeleteView):
     model = Reservation
     success_url = reverse_lazy('shuttle:admin')
+
+
+class ReservationMarkAsPaidView(generic.View):
+    def post(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+
+        if pk is not None:
+            reservation = get_object_or_404(Reservation, pk=pk)
+        else:
+            raise AttributeError(
+                'Reservation pk should be provided.'
+            )
+
+        reservation.paid = True
+        reservation.save()
+
+        return HttpResponseRedirect(reservation.get_absolute_url())
