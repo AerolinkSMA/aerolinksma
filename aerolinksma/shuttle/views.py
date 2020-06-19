@@ -51,7 +51,7 @@ class CreateReservationView(generic.View):
 
 class AdminView(generic.ListView):
     model = Reservation
-    paginate_by = 20
+    paginate_by = 15
     template_name = 'shuttle/admin.html'
 
     def get_context_data(self, **kwargs):
