@@ -15,10 +15,16 @@ class CreateReservationView(generic.View):
 
     def get(self, request, *args, **kwars):
         places = Place.objects.all().filter(enabled=True)
+        places_prices = dict()
+
+        for place in places:
+            places_prices[place.pk] = place.price
+
         context = {
             'client_form': self.client_form,
             'reservation_form': self.reservation_form,
             'places': places,
+            'places_prices': places_prices,
         }
 
         return render(request, self.template_name, context)
