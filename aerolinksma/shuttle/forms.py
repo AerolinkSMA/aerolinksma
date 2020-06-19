@@ -37,7 +37,7 @@ class ReservationForm(forms.ModelForm):
                                   initial=Reservation.FARE_TYPES[0])
     place = forms.ModelChoiceField(queryset=Place.objects.all().filter(enabled=True),
                                    empty_label='Choose a place')
-    luggage = forms.IntegerField(min_value=0, initial=0)
+    luggage = forms.IntegerField(min_value=0, max_value=6, initial=0)
 
     class Meta:
         model = Reservation
