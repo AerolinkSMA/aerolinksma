@@ -8,7 +8,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
         <link rel="apple-touch-icon" href="{% static 'logo192.png' %}" />
 
-        <title>AerolinkSMA</title>
+        <title>AerolinkSMA | {% block head_title %}Home{% endblock %}</title>
         {% block styles %}
             <link href="{% static 'dist/css/styles.css' %}" rel="stylesheet" />
         {% endblock %}
