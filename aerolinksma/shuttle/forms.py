@@ -39,12 +39,14 @@ class ReservationForm(forms.ModelForm):
                                    empty_label='Choose a place')
     luggage = forms.IntegerField(min_value=0, max_value=6, initial=0)
     passengers = forms.IntegerField(min_value=1, max_value=4, initial=1)
+    payment_method = forms.ChoiceField(choices=Reservation.PAYMENT_OPTIONS,
+                                       initial=Reservation.PAYMENT_OPTIONS[0])
 
     class Meta:
         model = Reservation
         fields = ('fare_type', 'direction', 'place', 'place_details',
-                  'sma_address', 'luggage', 'passengers', 'pickup_date',
-                  'return_date')
+                  'sma_address', 'luggage', 'passengers', 'payment_method',
+                  'pickup_date', 'return_date')
         widgets = {
             'place_details': forms.TextInput(
                 attrs={
@@ -91,6 +93,8 @@ class ReservationForm(forms.ModelForm):
             Field('place_details'),
             Field('sma_address'),
             Div(
+                Field('payment_method', wrapper_class='col-md-4',
+                      css_class='custom-select'),
                 Field('luggage', wrapper_class='col-md-4'),
                 Field('passengers', wrapper_class='col-md-4'),
                 css_class='form-row',
