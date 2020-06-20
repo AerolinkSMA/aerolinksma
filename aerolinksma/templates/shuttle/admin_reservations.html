@@ -5,7 +5,7 @@
 {% block content %}
     <div class="container my-3">
         <div class="row">
-            <div class="col-md-2 mb-3">
+            <div class="col-md-2 mb-3 order-1">
                 <ul id="admin-nav" class="nav nav-pills nav-justified nav-fill">
                     <li class="nav-item">
                         <a class="nav-link active"
@@ -23,7 +23,7 @@
                 </ul>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 order-3 order-md-2">
                 <h3>Newest reservations</h3>
                 <ul class="list-group">
                     {% for reservation in object_list %}
@@ -71,7 +71,7 @@
                 {% include "partials/pagination.html" %}
             </div>
 
-            <div class="col-md-4 my-3 my-md-0">
+            <div class="col-md-4 my-3 my-md-0 order-2 order-md-3">
                 <h3>Next reservations</h3>
 
                 <ul class="list-group">
