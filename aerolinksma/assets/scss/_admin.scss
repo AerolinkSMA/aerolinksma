@@ -25,3 +25,9 @@
         }
     }
 }
+
+ul.list-group {
+    .list-group-item > small.pickup-date {
+        color: $body-color;
+    }
+}

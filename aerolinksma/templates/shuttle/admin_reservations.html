@@ -59,7 +59,7 @@
                                 ago
                             </small>
 
-                            <small class="d-block"
+                            <small class="pickup-date d-block{% if reservation.has_passed %} text-muted{% endif %}"
                                    title="{{ reservation.pickup_date|date:'r' }}">
                                 Pickup:
                                 {{ reservation.pickup_date|date:'D, d M h:i a' }}
