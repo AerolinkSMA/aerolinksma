@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block head_title %}{{ title|default:"Add new place" }}{% endblock %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container my-3">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h3>{{ title|default:"Add new place" }}</h3>
+
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+
+                    <button class="btn btn-success">
+                        Save
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

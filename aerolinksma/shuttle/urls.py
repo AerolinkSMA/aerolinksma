@@ -22,4 +22,10 @@ urlpatterns = [
     path('admin/places/',
          views.AdminPlaceView.as_view(),
          name='admin-places'),
+    path('admin/places/add/',
+         views.PlaceCreateView.as_view(),
+         name='place-add'),
+    path('admin/places/<int:pk>/edit/',
+         views.PlaceUpdateView.as_view(),
+         name='place-edit'),
 ]
