@@ -57,12 +57,30 @@
                             <h5>{{ object.luggage }}</h5>
                             <p>Luggage</p>
                         </li>
+                    </ul>
+                </div>
 
+                <div class="list-detail-block">
+                    <ul class="list-group list-group-horizontal-md">
                         <li class="list-group-item list-detail-item{% if object.paid %} border-success{% endif %}">
                             <h5{% if object.paid %} class="text-success"{% endif %}>
                                 {{ object.paid|yesno:"Yes,No" }}
                             </h5>
                             <p>Paid</p>
+                        </li>
+
+                        {% if object.paid %}
+                            <li class="list-group-item list-detail-item">
+                                <h5 title="{{ object.paid_at|date:'r' }}">
+                                    {{ object.paid_at|date:"D, d M h:i a" }}
+                                </h5>
+                                <p>Paid at</p>
+                            </li>
+                        {% endif %}
+
+                        <li class="list-group-item list-detail-item">
+                            <h5>{{ object.get_payment_method_display }}</h5>
+                            <p>Payment method</p>
                         </li>
                     </ul>
                 </div>

@@ -44,6 +44,10 @@ class Reservation(models.Model):
         ('OW', 'One way'),
         ('RT', 'Round trip'),
     )
+    PAYMENT_OPTIONS = (
+        ('CA', 'Cash'),
+        ('PP', 'PayPal'),
+    )
     direction = models.CharField(max_length=2, choices=DIRECTION_CHOICES)
     place = models.ForeignKey(Place, on_delete=models.SET_NULL,
                               null=True, related_name='reservations')
@@ -59,6 +63,8 @@ class Reservation(models.Model):
         blank=True,
         help_text='Required if fare type is round trip')
     paid = models.BooleanField(default=False)
+    paid_at = models.DateTimeField(null=True, blank=True)
+    payment_method = models.CharField(max_length=2, choices=PAYMENT_OPTIONS)
     notes = models.TextField(help_text='Extra information about your trip',
                              null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
