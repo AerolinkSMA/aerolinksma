@@ -1,0 +1,18 @@
+{% url 'shuttle:admin' as index %}
+{% url 'shuttle:admin-places' as places %}
+
+<ul id="admin-nav" class="nav nav-pills nav-justified nav-fill">
+    <li class="nav-item">
+        <a class="nav-link{% if request.path == index %} active{% endif %}"
+           href="{% url 'shuttle:admin' %}">
+            Reservations
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link{% if request.path == places %} active{% endif %}"
+           href="{% url 'shuttle:admin-places' %}">
+            Places
+        </a>
+    </li>
+</ul>
