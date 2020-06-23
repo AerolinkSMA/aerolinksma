@@ -12,6 +12,10 @@
         {% block styles %}
             <link href="{% static 'dist/css/styles.css' %}" rel="stylesheet" />
         {% endblock %}
+
+        {% block head_scripts %}
+            <script src="{% static 'dist/js/main.bundle.js' %}" defer></script>
+        {% endblock %}
     </head>
     <body>
         {% include "partials/navbar.html" %}
@@ -21,8 +25,8 @@
         </div>
 
         {% include "partials/footer.html" %}
+
         {% block scripts %}
-            <script src="{% static 'dist/js/main.bundle.js' %}"></script>
         {% endblock %}
     </body>
 </html>
