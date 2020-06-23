@@ -89,6 +89,7 @@ class Reservation(models.Model):
         null=True,
         blank=True,
         help_text='Required if fare type is round trip')
+    cost = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     paid = models.BooleanField(default=False)
     paid_at = models.DateTimeField(null=True, blank=True)
     payment_method = models.CharField(max_length=2, choices=PAYMENT_OPTIONS)
@@ -119,3 +120,14 @@ class Reservation(models.Model):
 
     def get_id(self):
         return '#{}'.format(self.id)
+
+    def display_cost(self):
+        return '${}'.format(self.cost)
+
+    def get_paypal_cost(self, add_dollar_sign=True):
+        total_cost = self.cost + (self.cost * 20 / 100)
+
+        if add_dollar_sign:
+            return '${}'.format(total_cost)
+
+        return total_cost

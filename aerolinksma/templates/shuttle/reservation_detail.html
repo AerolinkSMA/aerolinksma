@@ -82,6 +82,36 @@
                             <h5>{{ object.get_payment_method_display }}</h5>
                             <p>Payment method</p>
                         </li>
+
+                        <li class="list-group-item d-flex flex-column justify-content-center align-items-center">
+                            <h5 class="mb-1">
+                                {{ object.display_cost }}
+                            </h5>
+
+                            <p class="mb-0">
+                                {% if object.paid %}
+                                    Cost
+                                {% else %}
+                                    Cost in cash
+                                {% endif %}
+                            </p>
+                        </li>
+
+                        {% if not object.paid %}
+                            <li class="list-group-item d-flex flex-column justify-content-center align-items-center">
+                                <h5 class="mb-1">
+                                    {{ object.get_paypal_cost }}
+                                </h5>
+
+                                <p class="mb-0">
+                                    {% if object.paid %}
+                                        Cost
+                                    {% else %}
+                                        Cost with PayPal
+                                    {% endif %}
+                                </p>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
 

@@ -13,8 +13,9 @@ class CreateReservationView(generic.View):
     client_form = ClientForm()
     reservation_form = ReservationForm()
 
-    def get(self, request, *args, **kwars):
-        places = Place.objects.all().filter(enabled=True)
+    def get_places_prices(self, places):
+        if places is None:
+            places = Place.objects.all().filter(enabled=True)
         places_prices = dict()
 
         for place in places:
@@ -30,6 +31,13 @@ class CreateReservationView(generic.View):
                     'paypal': place.get_paypal_round_trip_price(),
                 }
             }
+
+        return places_prices
+
+    def get(self, request, *args, **kwars):
+        places = Place.objects.all().filter(enabled=True)
+        # Pass places so it is not queried twice.
+        places_prices = self.get_places_prices(places)
 
         context = {
             'client_form': self.client_form,
@@ -48,13 +56,26 @@ class CreateReservationView(generic.View):
             client = client_form.save()
             reservation = reservation_form.save(commit=False)
             reservation.client = client
+
+            # Set cost in cash to reservation instance according to
+            # fare type.
+            if reservation.fare_type == Reservation.FARE_TYPES[0][0]:
+                reservation.cost = reservation.place.price
+            else:
+                reservation.cost = reservation.place.get_round_trip_price(
+                    add_dollar_sign=False,
+                )
             reservation.save()
 
             return HttpResponseRedirect(reverse('index'))
         else:
+            places = Place.objects.all().filter(enabled=True)
+            places_prices = self.get_places_prices(places)
             context = {
                 'client_form': client_form,
                 'reservation_form': reservation_form,
+                'places': places,
+                'places_prices': places_prices,
             }
 
             return render(request, self.template_name, context)
@@ -94,6 +115,8 @@ class ReservationMarkAsPaidView(generic.View):
             )
 
         reservation.paid = True
+        reservation.paid_at = timezone.now()
+        reservation.payment_method = Reservation.PAYMENT_OPTIONS[0][0]
         reservation.save()
 
         return HttpResponseRedirect(reservation.get_absolute_url())
