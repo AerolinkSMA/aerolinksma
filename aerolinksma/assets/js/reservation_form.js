@@ -28,41 +28,30 @@ function showCostCard() {
   $(totalCostSmall).removeClass('d-none');
 }
 
-function calculate() {
-  var cost = {
-    cash: 0,
-    paypal: 0
-  };
+function getPrices() {
+  /*
+   * Prices JSON object is in form:
+   *   { [fareType]: { cash: <price>, paypal: <price> } }
+   */
   var fareType = $(fareTypeSelect).val();
   var placeID = $(placeSelect).val();
-  var placePrice = parseFloat(placesPrices[placeID]);
+  var cashPrice = placesPrices[placeID][fareType].cash;
+  var paypalPrice = placesPrices[placeID][fareType].paypal;
 
-  cost.cash = placePrice;
-
-  // Double cost if fare type is round trip.
-  if (fareType === "RT") {
-    var newCost = cost.cash * 2;
-    newCost = Math.ceil(newCost - (newCost * 0.10)); // 10% less.
-    cost.cash = newCost;
-  }
-
-  // Calculate PayPal cost, which is 20.5% more.
-  cost.paypal = Math.ceil(cost.cash + (cost.cash * 0.205));
-
-  $(costCashSpan).text(cost.cash);
-  $(costPaypalSpan).text(cost.paypal);
+  $(costCashSpan).text(cashPrice);
+  $(costPaypalSpan).text(paypalPrice);
 }
 
 // Initialize, in case of page refresh or form errors, which sets
 // initial values for the form.
 if ($(placeSelect).val() !== "" && $(fareTypeSelect).val() !== "") {
-  calculate();
+  getPrices();
   showCostCard();
 }
 
 $(placeSelect).on("change", function(ev) {
   if ($(this).val() !== "") {
-    calculate();
+    getPrices();
     showCostCard();
   } else {
     hideCostCard();
@@ -70,5 +59,5 @@ $(placeSelect).on("change", function(ev) {
 });
 
 $(fareTypeSelect).on("change", function(ev) {
-  calculate();
+  getPrices();
 });

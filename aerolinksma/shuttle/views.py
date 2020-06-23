@@ -18,7 +18,18 @@ class CreateReservationView(generic.View):
         places_prices = dict()
 
         for place in places:
-            places_prices[place.pk] = place.price
+            # Use fare type model choices as keys for convenient
+            # handling in JavaScript.
+            places_prices[place.pk] = {
+                'OW': {         # one way
+                    'cash': place.display_price(),
+                    'paypal': place.get_paypal_price(),
+                },
+                'RT': {         # round trip
+                    'cash': place.get_round_trip_price(),
+                    'paypal': place.get_paypal_round_trip_price(),
+                }
+            }
 
         context = {
             'client_form': self.client_form,
