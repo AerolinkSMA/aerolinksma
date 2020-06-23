@@ -5,11 +5,11 @@
 {% block content %}
     <div class="container my-3">
         <div class="row">
-            <div class="col-md-2 mb-3 order-1">
+            <div class="col-lg-2 mb-3 order-1">
                 {% include "shuttle/partials/sidebar_nav.html" %}
             </div>
 
-            <div class="col-md-6 order-3 order-md-2">
+            <div class="col-lg-6 order-3 order-lg-2">
                 <h3>Newest reservations</h3>
                 <ul class="list-group">
                     {% for reservation in object_list %}
@@ -57,7 +57,7 @@
                 {% include "partials/pagination.html" %}
             </div>
 
-            <div class="col-md-4 my-3 my-md-0 order-2 order-md-3">
+            <div class="col-lg-4 my-3 my-lg-0 order-2 order-lg-3">
                 <h3>Next reservations</h3>
 
                 <ul class="list-group">
