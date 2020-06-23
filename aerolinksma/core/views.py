@@ -10,3 +10,4 @@ class IndexView(generic.TemplateView):
 class PricingView(generic.ListView):
     model = Place
     template_name = 'pricing.html'
+    queryset = Place.objects.all().filter(enabled=True)
