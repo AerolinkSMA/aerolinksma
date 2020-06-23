@@ -1,4 +1,18 @@
 .pricing.table {
+    thead th {
+        border-top: none;
+
+        &:last-of-type {
+            text-align: right;
+        }
+    }
+
+    tbody td:last-of-type {
+        text-align: right;
+    }
+}
+
+.pricing-sm.table {
     tbody td:last-of-type {
         text-align: right;
     }

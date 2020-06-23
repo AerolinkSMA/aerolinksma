@@ -27,6 +27,33 @@ class Place(models.Model):
         time = datetime.timedelta(hours=self.time)
         return ':'.join(str(time).split(':')[:2])
 
+    def get_round_trip_price(self, add_dollar_sign=True):
+        doubled_price = self.price * 2
+        total_price = doubled_price - (doubled_price * 10 / 100)  # 10% less
+
+        if add_dollar_sign:
+            return '${}'.format(total_price)
+
+        return total_price
+
+    def get_paypal_price(self, add_dollar_sign=True):
+        total_price = self.price + (self.price * 20 / 100)
+
+        if add_dollar_sign:
+            return '${}'.format(total_price)
+
+        return total_price
+
+    def get_paypal_round_trip_price(self, add_dollar_sign=True):
+        doubled_price = self.price * 2
+        total_price = doubled_price - (doubled_price * 10 / 100)  # 10% less
+        total_price = total_price + (total_price * 20 / 100)
+
+        if add_dollar_sign:
+            return '${}'.format(total_price)
+
+        return total_price
+
 
 class Client(models.Model):
     first_name = models.CharField(max_length=255)

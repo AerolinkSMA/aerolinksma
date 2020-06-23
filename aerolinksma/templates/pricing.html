@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block head_title %}Pricing{% endblock %}
+
+{% block content %}
+    <div class="container my-3">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="mb-3 card-title">Pricing</h1>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h4>Prices in cash</h4>
+                        <table class="pricing table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">One way</th>
+                                    <th scope="col">Round trip</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for place in object_list %}
+                                    <tr>
+                                        <th scope="row">{{ place.name }}</th>
+                                        <td>{{ place.display_price }}</td>
+                                        <td>
+                                            {{ place.get_round_trip_price }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <hr class="mb-2" />
+
+                        <p class="mb-0 text-muted">
+                            All prices are in USD.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h4>PayPal prices</h4>
+                        <table class="pricing table table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">One way</th>
+                                    <th scope="col">Round trip</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for place in object_list %}
+                                    <tr>
+                                        <th scope="row">{{ place.name }}</th>
+                                        <td>{{ place.get_paypal_price }}</td>
+                                        <td>
+                                            {{ place.get_paypal_round_trip_price }}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <hr class="mb-2" />
+
+                        <p class="mb-0 text-muted">
+                            All prices are in USD.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
