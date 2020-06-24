@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 
 from aerolinksma.shuttle import tasks
-from aerolinksma.shuttle.models import Reservation, Place
+from aerolinksma.shuttle.models import Reservation, Place, Driver
 from aerolinksma.shuttle.forms import ClientForm, ReservationForm
 
 
@@ -146,4 +146,30 @@ class PlaceUpdateView(generic.UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Update place'
+        return context
+
+
+class AdminDriverListView(generic.ListView):
+    model = Driver
+    template_name = 'shuttle/admin_drivers.html'
+
+
+class DriverCreateView(generic.CreateView):
+    model = Driver
+    fields = ['first_name', 'last_name', 'email', 'phone_number',
+              'is_active', 'photo']
+    template_name = 'shuttle/driver_form.html'
+    success_url = reverse_lazy('shuttle:admin-drivers')
+
+
+class DriverUpdateView(generic.UpdateView):
+    model = Driver
+    fields = ['first_name', 'last_name', 'email', 'phone_number',
+              'is_active', 'photo']
+    template_name = 'shuttle/driver_form.html'
+    success_url = reverse_lazy('shuttle:admin-drivers')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Update driver'
         return context

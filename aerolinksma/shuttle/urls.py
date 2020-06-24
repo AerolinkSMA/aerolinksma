@@ -28,4 +28,13 @@ urlpatterns = [
     path('admin/places/<int:pk>/edit/',
          views.PlaceUpdateView.as_view(),
          name='place-edit'),
+    path('admin/drivers/',
+         views.AdminDriverListView.as_view(),
+         name='admin-drivers'),
+    path('admin/drivers/add/',
+         views.DriverCreateView.as_view(),
+         name='driver-add'),
+    path('admin/drivers/<int:pk>/edit/',
+         views.DriverUpdateView.as_view(),
+         name='driver-edit'),
 ]

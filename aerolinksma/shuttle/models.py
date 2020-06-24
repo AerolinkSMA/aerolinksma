@@ -1,8 +1,11 @@
+import os
+import uuid
 import datetime
 
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django.conf import settings
 
 
 class Place(models.Model):
@@ -75,6 +78,7 @@ class Reservation(models.Model):
         ('CA', 'Cash'),
         ('PP', 'PayPal'),
     )
+    driver = models.ForeignKey('Driver', on_delete=models.SET_NULL, null=True)
     direction = models.CharField(max_length=2, choices=DIRECTION_CHOICES)
     place = models.ForeignKey(Place, on_delete=models.SET_NULL,
                               null=True, related_name='reservations')
@@ -131,3 +135,25 @@ class Reservation(models.Model):
             return '${}'.format(total_cost)
 
         return total_cost
+
+
+def get_file_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = '{}.{}'.format(uuid.uuid4(), ext)
+    static_dir = 'images/drivers'
+    filename = '{}/{}'.format(static_dir, filename)
+    return filename
+
+
+class Driver(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=20)
+    email = models.EmailField(max_length=255)
+    photo = models.ImageField(upload_to=get_file_path)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return '{} {}'.format(self.first_name, self.last_name)

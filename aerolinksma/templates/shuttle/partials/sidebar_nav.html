@@ -1,5 +1,6 @@
 {% url 'shuttle:admin' as index %}
 {% url 'shuttle:admin-places' as places %}
+{% url 'shuttle:admin-drivers' as drivers %}
 
 <ul id="admin-nav" class="nav nav-pills nav-justified nav-fill">
     <li class="nav-item">
@@ -13,6 +14,13 @@
         <a class="nav-link{% if request.path == places %} active{% endif %}"
            href="{% url 'shuttle:admin-places' %}">
             Places
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link{% if request.path == drivers %} active{% endif %}"
+           href="{% url 'shuttle:admin-drivers' %}">
+            Drivers
         </a>
     </li>
 </ul>

@@ -147,3 +147,6 @@ node_modules/
 
 # ignore webpack generated files
 aerolinksma/static/js/bundle.js
+
+# ignore uploaded files
+aerolinksma/static/media/

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block head_title %}Drivers{% endblock %}
+
+{% block content %}
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md-2 mb-2">
+                {% include "shuttle/partials/sidebar_nav.html" %}
+            </div>
+
+            <div class="col-md-6">
+                <div class="d-flex justify-content-between mb-3">
+                    <h3 class="mb-0">Drivers</h3>
+
+                    <a class="btn btn-primary"
+                       href="{% url 'shuttle:driver-add' %}">
+                        Add new driver
+                    </a>
+                </div>
+                <ul class="list-group">
+                    {% for driver in object_list %}
+                        <a class="list-group-item list-group-item-action"
+                           href="{% url 'shuttle:driver-edit' driver.pk %}">
+                            <div class="d-flex w-100 justify-content-between align-items-center">
+                                <h6 class="mb-0">
+                                    {{ driver.first_name }}
+                                    {{ driver.last_name }}
+                                    {% if not driver.is_active %}
+                                        <span class="badge badge-danger">
+                                            Not active
+                                        </span>
+                                    {% endif %}
+                                </h6>
+                            </div>
+
+                            {% with reservation_count=driver.reservation_set.count %}
+                                <small class="d-block">
+                                    {{ reservation_count }}
+                                    reservation{{ reservation_count|pluralize }}
+                                </small>
+                            {% endwith %}
+                        </a>
+                    {% empty %}
+                        <li class="list-group-item">
+                            <p class="mb-0 text-muted text-center">
+                                There are no drivers.
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
