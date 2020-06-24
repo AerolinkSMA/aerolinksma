@@ -3,8 +3,6 @@ import datetime
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
 
 
 class Place(models.Model):
@@ -133,17 +131,3 @@ class Reservation(models.Model):
             return '${}'.format(total_cost)
 
         return total_cost
-
-    def send_email(self):
-        email = self.client.email
-        if email is None or email == '':
-            raise AttributeError('Email is blank')
-
-        context = {'reservation': self}
-        subject = render_to_string('emails/clients/new_reservation_subject.txt',
-                                   {'id': self.get_id()})
-        message = render_to_string('emails/clients/new_reservation_body.txt',
-                                   context)
-        from_email = 'contact@aerolinksma.com'
-
-        send_mail(subject, message, from_email, [email])

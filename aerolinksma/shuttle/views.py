@@ -4,6 +4,7 @@ from django.views import generic
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 
+from aerolinksma.shuttle import tasks
 from aerolinksma.shuttle.models import Reservation, Place
 from aerolinksma.shuttle.forms import ClientForm, ReservationForm
 
@@ -66,7 +67,8 @@ class CreateReservationView(generic.View):
                     add_dollar_sign=False,
                 )
             reservation.save()
-            reservation.send_email()
+            tasks.notify_new_reservation.delay(reservation.client.email,
+                                               reservation.pk)
 
             return HttpResponseRedirect(reverse('index'))
         else:
