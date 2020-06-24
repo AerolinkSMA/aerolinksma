@@ -66,6 +66,7 @@ class CreateReservationView(generic.View):
                     add_dollar_sign=False,
                 )
             reservation.save()
+            reservation.send_email()
 
             return HttpResponseRedirect(reverse('index'))
         else:

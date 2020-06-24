@@ -1,0 +1,19 @@
+We're reviewing your information, and your driver is currently being
+assigned. Please remember that prior to your ride we will send you
+another email with all the contact information that is pertinent to
+your driver (name, email, phone number, and photo), in order to create
+a smooth flow of the communication between you and the driver.
+
+Please note that by selecting PayPal or credit card as payment method
+the total price will be incremented due to VAT and credit card fees.
+
+Your reservation details:
+
+- Reservation ID: {{ reservation.get_id }}
+- Fare type: {{ reservation.get_fare_type_display }}
+- Pickup date: {{ reservation.pickup_date|date:"D, d M h:i a" }}
+{% if reservation.fare_type == 'RT' %}- Return date: {{ reservation.return_date|date:"D, d M h:i a" }}{% endif %}
+- Passengers: {{ reservation.passengers }}
+- Luggage: {{ reservation.luggage }}
+- Cost in cash: {{ reservation.display_cost }}
+- Cost with PayPal: {{ reservation.get_paypal_cost }}
