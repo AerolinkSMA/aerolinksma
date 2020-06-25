@@ -60,7 +60,7 @@
             <div class="col-lg-4 my-3 my-lg-0 order-2 order-lg-3">
                 <h3>Next reservations</h3>
 
-                <ul class="list-group">
+                <ul class="list-group mb-3">
                     {% for reservation in next_reservations %}
                         <a class="list-group-item list-group-item-action"
                            href="{{ reservation.get_absolute_url }}">
@@ -78,6 +78,31 @@
                             <small title="{{ reservation.pickup_date|date:'r' }}">
                                 In
                                 {{ reservation.pickup_date|timeuntil }}
+                            </small>
+                        </a>
+                    {% endfor %}
+                </ul>
+
+                <h3>Next reservations to return</h3>
+
+                <ul class="list-group">
+                    {% for reservation in next_reservations_to_return %}
+                        <a class="list-group-item list-group-item-action"
+                           href="{{ reservation.get_absolute_url }}">
+                            <h6 class="mb-0">
+                                {{ reservation.place.name }}
+                                {{ reservation.get_direction_display }},
+                                {{ reservation.get_id }}
+                                {% if not reservation.paid %}
+                                    <span class="badge">
+                                        Not paid
+                                    </span>
+                                {% endif %}
+                            </h6>
+
+                            <small title="{{ reservation.pickup_date|date:'r' }}">
+                                In
+                                {{ reservation.return_date|timeuntil }}
                             </small>
                         </a>
                     {% endfor %}

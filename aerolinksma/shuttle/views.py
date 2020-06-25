@@ -95,9 +95,14 @@ class AdminReservationView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['next_reservations'] = Reservation.objects.all().filter(
+        context['next_reservations'] = Reservation.objects.filter(
             pickup_date__gte=timezone.now()
         ).order_by('pickup_date')[:5]
+        context['next_reservations_to_return'] = Reservation.objects.filter(
+            fare_type='RT',
+            pickup_date__lte=timezone.now(),
+            return_date__gte=timezone.now(),
+        )[:5]
         return context
 
 
