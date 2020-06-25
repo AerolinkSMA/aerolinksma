@@ -45,11 +45,22 @@
                                 ago
                             </small>
 
-                            <small class="pickup-date d-block{% if reservation.has_passed %} text-muted{% endif %}"
+                            <small class="pickup-date{% if reservation.has_passed %} text-muted{% endif %}"
                                    title="{{ reservation.pickup_date|date:'r' }}">
                                 Pickup:
                                 {{ reservation.pickup_date|date:'D, d M h:i a' }}
                             </small>
+
+                            {% if reservation.is_assigned %}
+                                <span class="badge badge-primary">
+                                    Assigned to
+                                    {{ reservation.driver.first_name }}
+                                </span>
+                            {% else %}
+                                <span class="badge badge-light">
+                                    Not assigned
+                                </span>
+                            {% endif %}
                         </a>
                     {% endfor %}
                 </ul>
@@ -79,6 +90,17 @@
                                 In
                                 {{ reservation.pickup_date|timeuntil }}
                             </small>
+
+                            {% if reservation.is_assigned %}
+                                <span class="badge badge-primary">
+                                    Assigned to
+                                    {{ reservation.driver.first_name }}
+                                </span>
+                            {% else %}
+                                <span class="badge badge-light">
+                                    Not assigned
+                                </span>
+                            {% endif %}
                         </a>
                     {% endfor %}
                 </ul>
@@ -104,6 +126,17 @@
                                 In
                                 {{ reservation.return_date|timeuntil }}
                             </small>
+
+                            {% if reservation.is_assigned %}
+                                <span class="badge badge-primary">
+                                    Assigned to
+                                    {{ reservation.driver.first_name }}
+                                </span>
+                            {% else %}
+                                <span class="badge badge-light">
+                                    Not assigned
+                                </span>
+                            {% endif %}
                         </a>
                     {% endfor %}
                 </ul>
@@ -132,7 +165,8 @@
 
                             {% if reservation.is_assigned %}
                                 <span class="badge badge-primary">
-                                    Assigned to {{ reservation.driver }}
+                                    Assigned to
+                                    {{ reservation.driver.first_name }}
                                 </span>
                             {% else %}
                                 <span class="badge badge-light">
