@@ -78,6 +78,7 @@ class Reservation(models.Model):
         ('CA', 'Cash'),
         ('PP', 'PayPal'),
     )
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     driver = models.ForeignKey('Driver', on_delete=models.SET_NULL,
                                null=True, blank=True)
     direction = models.CharField(max_length=2, choices=DIRECTION_CHOICES)
@@ -98,6 +99,7 @@ class Reservation(models.Model):
     paid = models.BooleanField(default=False)
     paid_at = models.DateTimeField(null=True, blank=True)
     payment_method = models.CharField(max_length=2, choices=PAYMENT_OPTIONS)
+    canceled = models.BooleanField(default=False)
     notes = models.TextField(help_text='Extra information about your trip',
                              null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
