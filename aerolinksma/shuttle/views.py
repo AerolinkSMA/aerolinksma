@@ -103,6 +103,9 @@ class AdminReservationView(generic.ListView):
             pickup_date__lte=timezone.now(),
             return_date__gte=timezone.now(),
         )[:5]
+        context['recently_passed_reservations'] = Reservation.objects.filter(
+            pickup_date__lte=timezone.now(),
+        ).order_by('-pickup_date')[:5]
         return context
 
 
