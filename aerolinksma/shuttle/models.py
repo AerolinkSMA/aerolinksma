@@ -129,6 +129,48 @@ class Reservation(models.Model):
     def is_assigned(self):
         return bool(self.driver is not None)
 
+    @classmethod
+    def get_assigned_reservations(cls, order=False):
+        queryset = cls.objects.exclude(driver=None)
+
+        if order:
+            return queryset.order_by('pickup_date')
+
+    @classmethod
+    def get_next_reservations(cls, order=False):
+        queryset = cls.objects.filter(
+            pickup_date__gt=timezone.now()
+        )
+
+        if order:
+            return queryset.order_by('pickup_date')
+
+        return queryset
+
+    @classmethod
+    def get_reservations_to_return(cls, order=False):
+        queryset = cls.objects.filter(
+            fare_type='RT',
+            pickup_date__lte=timezone.now(),
+            return_date__gt=timezone.now(),
+        )
+
+        if order:
+            return queryset.order_by('return_date')
+
+        return queryset
+
+    @classmethod
+    def get_recently_passed_reservations(cls, order=False):
+        queryset = cls.objects.filter(
+            pickup_date__lt=timezone.now()
+        )
+
+        if order:
+            return queryset.order_by('-pickup_date')
+
+        return queryset
+
     def get_id(self):
         return '#{}'.format(self.id)
 

@@ -95,17 +95,18 @@ class AdminReservationView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['next_reservations'] = Reservation.objects.filter(
-            pickup_date__gte=timezone.now()
-        ).order_by('pickup_date')[:5]
-        context['next_reservations_to_return'] = Reservation.objects.filter(
-            fare_type='RT',
-            pickup_date__lte=timezone.now(),
-            return_date__gte=timezone.now(),
+        next_reservations = Reservation.get_next_reservations(order=True)[:5]
+        context['next_reservations'] = next_reservations
+
+        reservations_to_return = Reservation.get_reservations_to_return(
+            order=True,
         )[:5]
-        context['recently_passed_reservations'] = Reservation.objects.filter(
-            pickup_date__lte=timezone.now(),
-        ).order_by('-pickup_date')[:5]
+        context['next_reservations_to_return'] = reservations_to_return
+
+        recently_passed_reservations = Reservation.get_recently_passed_reservations(
+            order=True,
+        )[:5]
+        context['recently_passed_reservations'] = recently_passed_reservations
         return context
 
 
