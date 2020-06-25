@@ -78,7 +78,8 @@ class Reservation(models.Model):
         ('CA', 'Cash'),
         ('PP', 'PayPal'),
     )
-    driver = models.ForeignKey('Driver', on_delete=models.SET_NULL, null=True)
+    driver = models.ForeignKey('Driver', on_delete=models.SET_NULL,
+                               null=True, blank=True)
     direction = models.CharField(max_length=2, choices=DIRECTION_CHOICES)
     place = models.ForeignKey(Place, on_delete=models.SET_NULL,
                               null=True, related_name='reservations')
