@@ -3,7 +3,7 @@ from django.utils import timezone
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Field
 
-from aerolinksma.shuttle.models import Client, Reservation, Place
+from aerolinksma.shuttle.models import Client, Reservation, Place, Driver
 
 class ClientForm(forms.ModelForm):
     class Meta:
@@ -138,3 +138,17 @@ class ReservationForm(forms.ModelForm):
             return_date = None
 
         return return_date
+
+
+class ReservationAssignForm(forms.ModelForm):
+    driver = forms.ModelChoiceField(queryset=Driver.objects.all().filter(is_active=True),
+                                    empty_label='Not assigned', required=False)
+    class Meta:
+        model = Reservation
+        fields = ['driver']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['driver'].widget.attrs.update({
+            'class': 'custom-select',
+        })

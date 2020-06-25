@@ -6,7 +6,11 @@ from django.utils import timezone
 
 from aerolinksma.shuttle import tasks
 from aerolinksma.shuttle.models import Reservation, Place, Driver
-from aerolinksma.shuttle.forms import ClientForm, ReservationForm
+from aerolinksma.shuttle.forms import (
+    ClientForm,
+    ReservationForm,
+    ReservationAssignForm,
+)
 
 
 class CreateReservationView(generic.View):
@@ -99,6 +103,19 @@ class AdminReservationView(generic.ListView):
 
 class ReservationDetailView(generic.DetailView):
     model = Reservation
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        reservation = self.get_object()
+        context['reservation_assign_form'] = ReservationAssignForm(initial={
+            'driver': reservation.driver,
+        })
+        return context
+
+
+class ReservationUpdateView(generic.UpdateView):
+    model = Reservation
+    fields = ['driver']
 
 
 class ReservationDeleteView(generic.DeleteView):

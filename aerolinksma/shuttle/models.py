@@ -123,6 +123,10 @@ class Reservation(models.Model):
     def has_passed(self):
         return bool(self.pickup_date < timezone.now())
 
+    @property
+    def is_assigned(self):
+        return bool(self.driver is not None)
+
     def get_id(self):
         return '#{}'.format(self.id)
 
