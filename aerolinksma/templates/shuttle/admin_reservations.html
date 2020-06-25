@@ -83,6 +83,10 @@
                                     <span class="badge">
                                         Not paid
                                     </span>
+                                {% else %}
+                                    <span class="badge badge-success">
+                                        Paid
+                                    </span>
                                 {% endif %}
                             </h6>
 
@@ -119,6 +123,10 @@
                                     <span class="badge">
                                         Not paid
                                     </span>
+                                {% else %}
+                                    <span class="badge badge-success">
+                                        Paid
+                                    </span>
                                 {% endif %}
                             </h6>
 
@@ -154,6 +162,10 @@
                                 {% if not reservation.paid %}
                                     <span class="badge">
                                         Not paid
+                                    </span>
+                                {% else %}
+                                    <span class="badge badge-success">
+                                        Paid
                                     </span>
                                 {% endif %}
                             </h6>
